@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather</title>
-
-    <!-- #region: css-styles -->
-
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-
+    <title>Review Weather</title>
+    <!-- #region: links -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- #endregion -->
 
+    <!-- #region: scripts -->
+    <script src="./assets/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./assets/js/weather.js" defer></script>
+    <script src="./assets/js/ui.js" defer></script>
+    <script src="./assets/js/storage.js" defer></script>
+    <script src="./assets/js/script.js" defer></script>
     <!-- #endregion -->
   </head>
-  <body>
-    <!-- #region: main-container -->
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto mt-5">
+  <body class="bg-dark">
+    <!-- #region: main -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
           <div class="card bg-light text-center">
             <div class="card-body">
               <h3 class="card-title">
@@ -31,34 +34,47 @@
 
               <ul class="list-group p-0">
                 <li class="list-group-item d-flex justify-content-center">
-                  <div>دما کلوین: <span id="w-temp"></span></div>
-
-                  <div class="me-3">
-                    کمترین دما: <span id="w-temp_min"></span>
+                  <div>
+                    دما:
+                    <span id="w-temp"></span>
+                    کلوین
                   </div>
 
-                  <div class="me-3">
-                    بیشترین دما: <span id="w-temp_max"></span>
+                  <div class="ms-3">
+                    کمترین دما:
+                    <span id="w-temp_min"></span>
+                  </div>
+
+                  <div class="ms-3">
+                    بیشترین دما:
+                    <span id="w-temp_max"></span>
                   </div>
                 </li>
 
                 <li class="list-group-item">
-                  فشار: <span id="w-pressure"></span>
+                  فشار:
+                  <span id="w-pressure"></span>
                 </li>
 
                 <li class="list-group-item">
-                  رطوبت: <span id="w-humidity"></span>
+                  رطوبت:
+                  <span id="w-humidity"></span>
                 </li>
 
                 <li class="list-group-item">
-                  سرعت باد: <span id="w-wind_speed"></span>
+                  سرعت باد:
+                  <span id="w-wind_speed"></span>
                 </li>
 
                 <li class="list-group-item d-flex justify-content-center">
-                  <div>طول جغرافیایی: <span id="w-lon"></span></div>
+                  <div>
+                    طول جغرافیایی:
+                    <span id="w-lon"></span>
+                  </div>
 
-                  <div class="me-3">
-                    عرض جغرافیایی: <span id="w-lat"></span>
+                  <div class="ms-3">
+                    عرض جغرافیایی:
+                    <span id="w-lat"></span>
                   </div>
                 </li>
               </ul>
@@ -76,35 +92,48 @@
         </div>
       </div>
     </div>
-
     <!-- #endregion -->
 
     <!-- #region: modal -->
-
     <div class="modal fade" id="locationModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">موقعیت</h5>
 
-            <button type="button" class="ms-0 close" data-bs-dismiss="modal">
-              &times;
-            </button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
 
           <div class="modal-body">
             <form id="w-form">
-              <div class="form-group">
-                <label for="state">نام استان:</label>
+              <div class="d-flex justify-content-between">
+                <div class="form-floating mb-4">
+                  <input
+                    type="text"
+                    id="state"
+                    class="form-control"
+                    placeholder="نام استان"
+                  />
+                  <label for="state" class="form-label">نام استان</label>
+                </div>
 
-                <input type="text" id="state" class="form-control" />
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    id="city"
+                    class="form-control"
+                    placeholder="نام شهر"
+                  />
+                  <label for="city" class="form-label">نام شهر</label>
+                </div>
               </div>
 
-              <div class="form-group">
-                <label for="city">نام شهر:</label>
-
-                <input type="text" id="city" class="form-control" />
-              </div>
+              <div class="form-text text-danger" id="alert-box"></div>
             </form>
           </div>
 
@@ -120,18 +149,6 @@
         </div>
       </div>
     </div>
-
-    <!-- #endregion -->
-
-    <!-- #region: scripts -->
-
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="./assets/js/weather.js"></script>
-    <script src="./assets/js/ui.js"></script>
-    <script src="./assets/js/storage.js"></script>
-    <script src="./assets/js/script.js"></script>
-
     <!-- #endregion -->
   </body>
 </html>
